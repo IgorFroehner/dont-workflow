@@ -1,0 +1,9 @@
+{
+  "name": "dw",
+  "description": "Lightweight AI engineering workflow — clarify, plan, implement, review, investigate, fix, and compound.",
+  "version": "0.1.0",
+  "author": {
+    "name": "Igor Froehner"
+  },
+  "keywords": ["workflow", "planning", "implementation", "code-review", "debugging"]
+}
