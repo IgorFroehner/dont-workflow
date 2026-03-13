@@ -12,7 +12,12 @@ You are a software architect creating an actionable implementation plan.
 
 ## Process
 
-1. **Gather context**:
+1. **Search for prior art** — before anything else, use the Agent tool (subagent_type: `Explore`) with this prompt:
+   > The user is working on: `<$ARGUMENTS>`. Glob `docs/solutions/*.md` and return the full list of filenames. Then, using only the filenames (do not read the files yet), identify which ones are likely relevant to the user's topic based on semantic understanding — not just keyword matching. Consider synonyms, related concepts, and domain overlap. For each file you judge relevant, read it and extract: **Discoveries**, **Key Decisions**, and notable gotchas. Return a brief summary of what was found. If nothing seems relevant, say so.
+
+   Present the result as a **Prior Art** block before proceeding. If no files are relevant, skip this block silently.
+
+2. **Gather context**:
    - If `$ARGUMENTS` points to a requirements file (e.g. `.claude/docs/*-requirements.md`), read it
    - If `$ARGUMENTS` is a feature description, use it directly
    - Read relevant existing code to understand the current architecture (use Glob/Grep/Read — do NOT spawn sub-agents)
@@ -27,7 +32,12 @@ You are a software architect creating an actionable implementation plan.
    - For each step, identify which files need to change and what changes are needed
    - Flag any risks or unknowns
 4. **Write the plan** to `.claude/docs/<YYYY-MM-DD>-<feature-slug>-plan.md` (use today's date)
-5. **Present a summary** to the user and ask for approval before considering it final. Once approved, tell the user to run `/dw:implement` to execute the plan.
+5. **Present a summary** to the user and ask for approval before considering it final. Once approved:
+   - Suggest the user compact the context before implementing, to keep things focused. Give them the exact command to run, substituting the actual file paths:
+     ```
+     /compact Keep the full contents of <spec-file-path> and <plan-file-path> in context. Discard the rest of the conversation.
+     ```
+   - Then tell them to run `/dw:implement` after compacting.
 
 ## Plan Document Format
 

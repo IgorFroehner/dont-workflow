@@ -1,103 +1,88 @@
 # dont-workflow
 
-A lightweight skill set for Claude Code. Two focused workflows — one for building features, one for fixing issues — without spawning a fleet of sub-agents.
+Stop guessing. Start shipping.
+
+A Claude Code plugin that gives you a structured engineering workflow — from fuzzy idea to production code — without spawning a fleet of sub-agents. Pure markdown, zero dependencies.
+
+## Install
+
+Clone the repo and add it as a Claude Code plugin:
+
+```bash
+git clone https://github.com/igorfroehner/dont-workflow.git
+```
+
+Then in Claude Code, add the plugin path to your settings.
 
 ## Workflows
 
 ### Build a Feature
 
 ```
-/clarify  →  /plan  →  /implement  →  /review  →  /compound
+/dw:brainstorm  →  /dw:specify  →  /dw:plan  →  /dw:implement  →  /dw:review  →  /dw:compound
 ```
+
+Start broad, get specific, then execute. Each step produces a document that feeds the next.
+
+| Skill | What it does |
+|-------|-------------|
+| **brainstorm** | Explore 2-4 directions for a problem. Pick one before committing. |
+| **specify** | Turn the chosen direction into a precise, testable spec. Handles UI/design flows too. |
+| **plan** | Break the spec into ordered implementation steps with specific files and changes. |
+| **implement** | Execute the plan step by step with built-in quality checks (linting, SOLID, file size). |
+| **review** | Review code for correctness, safety, and design — by file, staged changes, last commit, or PR. |
+| **compound** | Write a permanent record of what was built and why. Committed to the repo. |
 
 ### Fix an Issue
 
 ```
-/investigate  →  /fix
+/dw:investigate  →  /dw:fix
 ```
 
----
+| Skill | What it does |
+|-------|-------------|
+| **investigate** | Form hypotheses, gather evidence, find root causes. Asks for logs/context before concluding. |
+| **fix** | Apply targeted fixes from the investigation. Only touches what you ask it to. |
 
-## Skills
+## Why This Exists
 
-### `/clarify [feature description]`
+Claude Code is powerful, but without structure it tends to guess, over-scope, and lose context. This plugin adds guardrails:
 
-Turns a vague feature idea into a precise requirements document.
-
-- Asks targeted questions (scope, behavior, edge cases, constraints)
-- Max 2 rounds of questions — doesn't interrogate endlessly
-- Saves to `.claude/docs/<feature>-requirements.md`
-
----
-
-### `/plan [feature or requirements file]`
-
-Creates an actionable implementation plan, step by step.
-
-- Reads existing code to understand the architecture before planning
-- Asks about technical trade-offs (polling vs events, sync vs async, etc.) before writing
-- Each step identifies specific files, functions, and changes
-- Saves to `.claude/docs/<feature>-plan.md`
-
----
-
-### `/implement [plan file or step number]`
-
-Follows the plan and implements the feature.
-
-- Implements step by step, telling you what was done after each
-- Documents unexpected discoveries in the plan's **Findings** section
-- Stops and explains blockers rather than improvising around them
-- Can resume from a specific step: `/implement step 3`
-
----
-
-### `/review [file, "staged", "last", or PR number]`
-
-Reviews code for correctness, safety, and quality.
-
-- Accepts a file path, `staged` (git staged changes), `last` (last commit), or a PR number
-- Findings organized by severity: Critical / Important / Minor / Good
-- Direct and specific — references `file:line`, explains why issues matter
-- Won't nitpick style or suggest unrelated refactors
-
----
-
-### `/compound [feature name or plan file]`
-
-Produces a permanent record of what was built, to be committed to the repo.
-
-- Reads the plan, requirements, and git history to summarize what changed
-- Captures key decisions (the *why*, not just the *what*) and implementation discoveries
-- Saves to `docs/solutions/<feature>.md` — meant for humans and future LLMs
-
----
-
-### `/investigate [issue description]`
-
-Finds root causes of bugs without guessing.
-
-- Forms multiple hypotheses and challenges each with evidence
-- Asks for specific context it can't get from code alone (logs, query plans, repro steps) before drawing conclusions
-- If you can't provide context, it proceeds and marks it as an assumption
-- Saves to `.claude/docs/<issue>-investigation.md`
-
----
-
-### `/fix [investigation file] [finding numbers]`
-
-Applies targeted fixes from an investigation.
-
-- Only fixes what you ask for: `/fix investigation.md 1 2` skips finding 3
-- Confirms scope before touching anything
-- Provides specific validation steps after fixing
-- Minimal, surgical changes — doesn't refactor surrounding code
-
----
-
-## Design Principles
-
-- **No sub-agents.** Every skill does its own research with Read/Grep/Glob.
-- **Ask before assuming.** Skills pause and ask rather than fill gaps with guesses.
-- **Scope discipline.** `/fix` only fixes what you ask. `/implement` follows the plan. Skills don't bleed into each other's jobs.
+- **Skills don't bleed into each other.** `/fix` only fixes. `/implement` follows the plan. Each skill stays in its lane.
+- **Ask before assuming.** Skills pause and ask rather than filling gaps with guesses.
+- **No sub-agents.** Every skill does its own research with Read/Grep/Glob. Predictable, debuggable.
 - **Lightweight docs.** Working files go in `.claude/docs/` (ephemeral). Final records go in `docs/solutions/` (committed).
+
+## Skill Details
+
+### `/dw:brainstorm [problem or idea]`
+
+Use this when you have a problem but don't know how to solve it yet. Brainstorm explores the solution space — proposes 2-4 directions with honest pros/cons, gives a recommendation, and captures the chosen direction. Hand off to `/dw:specify` once you've picked.
+
+### `/dw:specify [feature description]`
+
+Turns a feature idea into a precise spec. Asks targeted questions about scope, behavior, edge cases, and constraints (max 2 rounds). If the feature involves UI, it handles designs — uses provided mockups or proposes a layout if you have none.
+
+### `/dw:plan [feature or spec file]`
+
+Reads the codebase, asks about technical trade-offs, then produces an ordered implementation plan. Each step identifies specific files, functions, and changes. Suggests compacting context before implementation.
+
+### `/dw:implement [plan file or step number]`
+
+Follows the plan step by step. Auto-detects quality checks for your stack (TypeScript, Python, Rust, Go, Ruby, C/C++, and more) and runs them after each step. Applies SOLID principles and flags structural issues. Documents discoveries as it goes. Can resume from any step.
+
+### `/dw:review [file, "staged", "last", or PR number]`
+
+Reviews code for correctness, safety, and quality. Findings organized by severity: Critical / Important / Minor / Good. References specific `file:line` locations. Won't nitpick style or suggest unrelated refactors.
+
+### `/dw:compound [feature name or plan file]`
+
+Produces a permanent record of what was built — decisions, discoveries, and what changed. Saved to `docs/solutions/` for future developers and LLMs.
+
+### `/dw:investigate [issue description]`
+
+Systematic debugging. Forms multiple hypotheses, challenges each with evidence, and asks for context it can't get from code alone (logs, query plans, repro steps). Marks assumptions explicitly.
+
+### `/dw:fix [investigation file] [finding numbers]`
+
+Applies targeted fixes from an investigation. Only fixes what you ask — `/dw:fix investigation.md 1 2` skips finding 3. Confirms scope before touching anything, provides validation steps after.

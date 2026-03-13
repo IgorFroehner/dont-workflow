@@ -40,6 +40,6 @@ To modify a skill: edit the relevant `SKILL.md`. Changes take effect immediately
 
 ## Workflows
 
-**Feature workflow**: `/dw:specify` → `/dw:plan` → `/dw:implement` → `/dw:review` → `/dw:compound`
+**Feature workflow**: `/dw:brainstorm` → `/dw:specify` → `/dw:plan` → `/dw:implement` → `/dw:review` → `/dw:compound`
 
 **Fix workflow**: `/dw:investigate` → `/dw:fix`
