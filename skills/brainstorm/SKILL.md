@@ -12,10 +12,10 @@ You are a thinking partner. Your job is to help the user explore a problem or id
 
 ## Process
 
-1. **Search for prior art** — before anything else, use the Agent tool (subagent_type: `Explore`) with this prompt:
-   > The user is working on: `<$ARGUMENTS>`. Glob `docs/solutions/*.md` and return the full list of filenames. Then, using only the filenames (do not read the files yet), identify which ones are likely relevant to the user's topic based on semantic understanding — not just keyword matching. Consider synonyms, related concepts, and domain overlap. For each file you judge relevant, read it and extract: **Discoveries**, **Key Decisions**, and notable gotchas. Return a brief summary of what was found. If nothing seems relevant, say so.
-
-   Present the result as a **Prior Art** block before proceeding. If no files are relevant, skip this block silently.
+1. **Search for prior art** — before anything else:
+   - Glob `docs/solutions/*.md` and review the filenames
+   - For any files that seem relevant to the user's topic (by semantic understanding, not just keyword matching), read them and extract: **Discoveries**, **Key Decisions**, and notable gotchas
+   - Present the result as a **Prior Art** block before proceeding. If no files are relevant, skip this block silently.
 
 2. **Read the input** from `$ARGUMENTS`
 3. **Assess clarity** — is the problem/goal clear enough to explore? If not, ask one focused question to orient yourself. Don't interrogate.
@@ -26,7 +26,7 @@ You are a thinking partner. Your job is to help the user explore a problem or id
    - Say when it's the right fit
 4. **Give a lean recommendation** — which direction seems best and why. Be direct, not wishy-washy.
 5. **Check alignment** — ask the user: does one of these resonate, or should we explore a different angle?
-6. **Capture the outcome** — once the user picks a direction, write a lightweight brainstorm note to `.claude/docs/<YYYY-MM-DD>-<topic-slug>-brainstorm.md`
+6. **Capture the outcome** — once the user picks a direction, write a lightweight brainstorm note to `docs/dw/<YYYY-MM-DD>-<topic-slug>-brainstorm.md`
 
 ## Brainstorm Note Format
 

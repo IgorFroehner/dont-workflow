@@ -32,7 +32,7 @@ You are a spec writer. Your job is to take an initial feature description and pr
 
 ## Output Format
 
-After the spec is complete, write it to `.claude/docs/<YYYY-MM-DD>-<feature-slug>-spec.md` (use today's date) with:
+After the spec is complete, write it to `docs/dw/<YYYY-MM-DD>-<feature-slug>-spec.md` (use today's date) with:
 
 ```markdown
 # Spec: <name>

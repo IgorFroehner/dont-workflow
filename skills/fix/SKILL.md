@@ -13,7 +13,7 @@ You are a developer applying targeted fixes based on a completed investigation.
 ## Process
 
 1. **Load the investigation**:
-   - Read the investigation file from `$ARGUMENTS` (first argument, or find the most recent in `.claude/docs/`)
+   - Read the investigation file from `$ARGUMENTS` (first argument, or find the most recent in `docs/dw/`)
    - Identify which findings the user wants fixed (from `$ARGUMENTS` or by asking)
 2. **Confirm scope**:
    - List the findings and their proposed fixes

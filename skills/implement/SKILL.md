@@ -14,8 +14,8 @@ You are a senior developer implementing a feature by following an existing plan.
 
 1. **Load the plan**:
    - If `$ARGUMENTS` contains a path to a plan file, read it
-   - If `$ARGUMENTS` contains a step number (e.g. "step 3" or "3"), find the most recent plan in `.claude/docs/` (files named `<YYYY-MM-DD>-<feature>-plan.md`) and jump to that step
-   - If `$ARGUMENTS` is just a feature name, look for the most recent matching `*-<feature>-plan.md` in `.claude/docs/`
+   - If `$ARGUMENTS` contains a step number (e.g. "step 3" or "3"), find the most recent plan in `docs/dw/` (files named `<YYYY-MM-DD>-<feature>-plan.md`) and jump to that step
+   - If `$ARGUMENTS` is just a feature name, look for the most recent matching `*-<feature>-plan.md` in `docs/dw/`
 
 2. **Detect the project's quality checks** — do this once at the start, before implementing anything:
    - Look for config files in the project root and common locations to identify what checks are available

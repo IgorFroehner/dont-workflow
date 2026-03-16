@@ -51,7 +51,7 @@ Claude Code is powerful, but without structure it tends to guess, over-scope, an
 - **Skills don't bleed into each other.** `/fix` only fixes. `/implement` follows the plan. Each skill stays in its lane.
 - **Ask before assuming.** Skills pause and ask rather than filling gaps with guesses.
 - **No sub-agents.** Every skill does its own research with Read/Grep/Glob. Predictable, debuggable.
-- **Lightweight docs.** Working files go in `.claude/docs/` (ephemeral). Final records go in `docs/solutions/` (committed).
+- **Lightweight docs.** Working files go in `docs/dw/` (ephemeral). Final records go in `docs/solutions/` (committed).
 
 ## Skill Details
 

@@ -33,7 +33,7 @@ To modify a skill: edit the relevant `SKILL.md`. Changes take effect immediately
 
 ## Skill Conventions
 
-- Skills write working files to `.claude/docs/` (ephemeral, not committed)
+- Skills write working files to `docs/dw/` (ephemeral, not committed)
 - Final artifacts go to `docs/solutions/` (committed)
 - Skills do their own research with Read/Grep/Glob — no sub-agents
 - Skills pause and ask the user rather than guess at missing context

@@ -12,13 +12,13 @@ You are a technical writer creating a permanent record of a completed feature or
 
 ## Process
 
-1. **Gather sources** from `$ARGUMENTS` and `.claude/docs/`:
+1. **Gather sources** from `$ARGUMENTS` and `docs/dw/`:
    - Find the plan file (`*-plan.md`) and/or investigation file (`*-investigation.md`)
    - Find the spec file (`*-spec.md`) if one exists
    - Read the plan's **Findings** section for implementation discoveries
    - Review the actual code changes: run `git diff main...HEAD --stat` or `git log --oneline` to see what was done
 2. **Write the compound document** to `docs/solutions/<YYYY-MM-DD>-<feature-slug>.md` (use today's date)
-   - This goes in `docs/solutions/`, NOT `.claude/docs/` — it is meant to be committed
+   - This goes in `docs/solutions/`, NOT `docs/dw/` — it is meant to be committed
 3. **Present the document** to the user for review before committing
 
 ## Document Format

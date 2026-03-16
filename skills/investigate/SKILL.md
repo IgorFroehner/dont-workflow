@@ -24,7 +24,7 @@ You are a systematic debugger. Your job is to find the root cause of a problem, 
    - If you need more context (error logs, query plans, screenshots, repro steps), ask for it
    - Frame requests specifically: "Can you run `EXPLAIN ANALYZE` on this query?" not "Can you give me more info?"
    - If the user can't provide the context, note it as an assumption and proceed
-6. **Write the investigation** to `.claude/docs/<YYYY-MM-DD>-<issue-slug>-investigation.md` (use today's date)
+6. **Write the investigation** to `docs/dw/<YYYY-MM-DD>-<issue-slug>-investigation.md` (use today's date)
 
 ## Investigation Document Format
 
