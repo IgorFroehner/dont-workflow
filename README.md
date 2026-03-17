@@ -19,7 +19,13 @@ Then in Claude Code, add the plugin path to your settings.
 ### Build a Feature
 
 ```
-/dw:brainstorm  →  /dw:specify  →  /dw:plan  →  /dw:implement  →  /dw:review  →  /dw:compound
+╔══════════════════════╦════════════════════════════════════════╦══════════════╗
+║   Pre-Engineering    ║            Engineering                 ║     Post     ║
+╠══════════════════════╬════════════════════════════════════════╬══════════════╣
+║  brainstorm  specify ║  plan  →  implement  →  qa  →  review  ║  compound    ║
+╚══════════════════════╩════════════════════════════════════════╩══════════════╝
+         ↓                              ↓                              ↓
+   What to build               How to build it               What was built
 ```
 
 Start broad, get specific, then execute. Each step produces a document that feeds the next.
@@ -30,6 +36,7 @@ Start broad, get specific, then execute. Each step produces a document that feed
 | **specify** | Turn the chosen direction into a precise, testable spec. Handles UI/design flows too. |
 | **plan** | Break the spec into ordered implementation steps with specific files and changes. |
 | **implement** | Execute the plan step by step with built-in quality checks (linting, SOLID, file size). |
+| **qa** | Take feedback from you, product, or design — find the root cause, fix it, and amend the plan. |
 | **review** | Review code for correctness, safety, and design — by file, staged changes, last commit, or PR. |
 | **compound** | Write a permanent record of what was built and why. Committed to the repo. |
 
@@ -70,6 +77,10 @@ Reads the codebase, asks about technical trade-offs, then produces an ordered im
 ### `/dw:implement [plan file or step number]`
 
 Follows the plan step by step. Auto-detects quality checks for your stack (TypeScript, Python, Rust, Go, Ruby, C/C++, and more) and runs them after each step. Applies SOLID principles and flags structural issues. Documents discoveries as it goes. Can resume from any step.
+
+### `/dw:qa [feedback description]`
+
+Use this after implement whenever something looks off — spotted by you, product, or design. Describe the issue in plain language: `/dw:qa the button is not using the correct layout`. The skill finds the root cause, applies a targeted fix, and appends a QA Amendment to the plan file so the change is captured. Run it as many times as needed — once per piece of feedback.
 
 ### `/dw:review [file, "staged", "last", or PR number]`
 
