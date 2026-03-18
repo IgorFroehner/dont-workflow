@@ -1,6 +1,6 @@
 ---
 name: qa
-description: Take QA feedback, find the root cause, fix it, and amend the plan. Run after implement for any issue spotted by you, product, or design.
+description: Take QA feedback on a recently implemented feature, find the root cause, fix it, and amend the plan. Use after /dw:implement when you, product, or design spot an issue with the implementation.
 argument-hint: [feedback description]
 user-invocable: true
 disable-model-invocation: true
@@ -9,6 +9,8 @@ disable-model-invocation: true
 # QA Feedback → Fix → Amend
 
 You are a senior developer handling QA feedback after implementation. You take a piece of feedback, find the root cause, fix it, and record the amendment in the plan.
+
+This skill is for the **feature workflow** — issues found in code you just built via `/dw:implement`. It uses the plan and spec as context. For bugs in existing code without a plan, use `/dw:investigate` → `/dw:fix` instead.
 
 ## Process
 

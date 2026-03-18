@@ -1,7 +1,7 @@
 ---
 name: plan
-description: Create a detailed implementation plan for a feature, based on requirements or a direct description.
-argument-hint: [feature or requirements file]
+description: Create a detailed implementation plan for a feature, based on requirements or a direct description. Use after specifying requirements or when you know what to build and need to figure out how.
+argument-hint: [feature description, or spec file path]
 user-invocable: true
 disable-model-invocation: true
 ---
@@ -19,13 +19,12 @@ You are a software architect creating an actionable implementation plan.
 
 2. **Gather context**:
    - If `$ARGUMENTS` points to a spec file (e.g. `docs/dw/*-spec.md`), read it
-   - If `$ARGUMENTS` is a feature description, use it directly
+   - If `$ARGUMENTS` is a feature description, use it directly — the user can skip brainstorm/specify and jump straight here when they already know what they want
    - Read relevant existing code to understand the current architecture (use Glob/Grep/Read — do NOT spawn sub-agents)
 3. **Clarify technical ambiguities** — BEFORE writing the plan:
-   - If there are multiple valid implementation approaches (e.g. polling vs events, sync vs async, new class vs extending existing), ask the user which they prefer
-   - If non-functional requirements are unclear (performance targets, thread safety, error handling strategy, backwards compatibility), ask
-   - If the scope boundary is fuzzy (should this also handle X? what about edge case Y?), ask
-   - Keep questions specific and grouped — one round of questions, not a drip feed
+   - If there are multiple valid implementation approaches (e.g. polling vs events, sync vs async, new class vs extending existing), use `AskUserQuestion` with each approach as an option — use the `preview` field to show a brief comparison (trade-offs, complexity, fit). Mark the recommended approach with "(Recommended)".
+   - If non-functional requirements or scope boundaries are unclear, include these as additional questions in the same `AskUserQuestion` call when they have clear alternatives. Use regular text for open-ended questions.
+   - Keep it to one round of questions, not a drip feed
    - If the user doesn't have a preference, note your chosen approach and why in the plan
 4. **Identify the work**:
    - Break the feature into ordered implementation steps

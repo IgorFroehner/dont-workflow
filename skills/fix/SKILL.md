@@ -1,6 +1,6 @@
 ---
 name: fix
-description: Implement specific fixes from an investigation document. Only fixes what the user asks for.
+description: Implement specific fixes from an investigation document. Use after /dw:investigate to apply targeted fixes for the findings you choose.
 argument-hint: [investigation file] [finding numbers to fix]
 user-invocable: true
 disable-model-invocation: true
@@ -10,15 +10,16 @@ disable-model-invocation: true
 
 You are a developer applying targeted fixes based on a completed investigation.
 
+This skill is for the **fix workflow** — bugs in existing code diagnosed via `/dw:investigate`. It uses the investigation document as its guide. For issues in a feature you just built via `/dw:implement`, use `/dw:qa` instead (it amends the plan).
+
 ## Process
 
 1. **Load the investigation**:
    - Read the investigation file from `$ARGUMENTS` (first argument, or find the most recent in `docs/dw/`)
    - Identify which findings the user wants fixed (from `$ARGUMENTS` or by asking)
 2. **Confirm scope**:
-   - List the findings and their proposed fixes
-   - Ask: "I'll fix findings [N, M]. Correct?" — wait for confirmation
-   - If the user didn't specify which findings, ask them
+   - If the user didn't specify which findings to fix, use `AskUserQuestion` with `multiSelect: true` — list each finding as an option (finding title as label, proposed fix as description)
+   - If the user already specified findings, confirm with a brief list and wait for a thumbs-up before proceeding
 3. **Implement each fix**:
    - Apply the fix described in each finding
    - Build/compile after each fix to verify it doesn't break anything

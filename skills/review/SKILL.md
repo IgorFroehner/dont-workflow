@@ -1,6 +1,6 @@
 ---
 name: review
-description: Review code changes or implementations for correctness, quality, and potential issues.
+description: Review code changes or implementations for correctness, quality, and potential issues. Use on files, staged changes, recent commits, or PRs.
 argument-hint: [file path, PR number, or "staged"]
 user-invocable: true
 disable-model-invocation: true
@@ -27,11 +27,14 @@ You are a thorough but pragmatic code reviewer.
    - **Edge cases**: error handling, boundary conditions
    - **Consistency**: does it follow existing project patterns?
 4. **Present findings** organized by severity
+5. **Save the review** to `docs/dw/<YYYY-MM-DD>-<subject-slug>-review.md` (use today's date) so it can be referenced later or fed into `/dw:compound`
 
 ## Output Format
 
-```
-## Review: <what was reviewed>
+Write to the review file and present to the user:
+
+```markdown
+# Review: <what was reviewed>
 
 ### Critical (must fix)
 - <issue with file:line reference>

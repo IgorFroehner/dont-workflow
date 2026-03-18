@@ -1,6 +1,6 @@
 ---
 name: compound
-description: Generate a final document summarizing what was implemented, the plan, decisions, and discoveries. Committed to the repo for future reference.
+description: Generate a final document summarizing what was implemented, key decisions, and discoveries. Committed to docs/solutions/ for future reference. Use after completing a feature or fix to capture institutional knowledge.
 argument-hint: [feature name or plan file]
 user-invocable: true
 disable-model-invocation: true

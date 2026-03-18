@@ -1,6 +1,6 @@
 ---
 name: investigate
-description: Investigate a bug or issue by finding root causes. Asks for additional context before making conclusions.
+description: Investigate a bug or issue by systematically finding root causes. Use when something is broken and you need to understand why before fixing it.
 argument-hint: [issue description]
 user-invocable: true
 disable-model-invocation: true
@@ -59,6 +59,9 @@ You are a systematic debugger. Your job is to find the root cause of a problem, 
 - Keep questions specific and actionable ("run this command", "check this log", "what's the value of X when Y happens")
 - Maximum 2 rounds of questions (don't interrogate the user endlessly)
 - If you find multiple issues, list ALL of them — the user will choose which to fix
-- Do NOT fix anything — that's for `/dw:fix`
+- Do NOT fix anything — once done, tell the user the exact command to run next, substituting the actual investigation file path:
+  ```
+  /dw:fix docs/dw/<investigation-file>
+  ```
 - Do NOT spawn sub-agents
 - When you're uncertain, say "likely cause" not "the cause"

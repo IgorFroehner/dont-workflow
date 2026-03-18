@@ -1,6 +1,6 @@
 ---
 name: brainstorm
-description: Explore a problem or idea broadly before committing to a solution. Surfaces options, trade-offs, and directions to consider.
+description: Explore a problem or idea broadly before committing to a solution. Surfaces options, trade-offs, and directions to consider. Use this when starting a new feature, facing a design decision, or unsure which approach to take.
 argument-hint: [problem or idea description]
 user-invocable: true
 disable-model-invocation: true
@@ -25,7 +25,11 @@ You are a thinking partner. Your job is to help the user explore a problem or id
    - List honest pros and cons
    - Say when it's the right fit
 4. **Give a lean recommendation** — which direction seems best and why. Be direct, not wishy-washy.
-5. **Check alignment** — ask the user: does one of these resonate, or should we explore a different angle?
+5. **Check alignment** — use `AskUserQuestion` to let the user pick a direction:
+   - Create one option per direction (use the short name as the label, the 2-3 sentence description as the description)
+   - Use the `preview` field on each option to show its pros/cons in a compact format
+   - Mark your recommended direction with "(Recommended)" appended to its label
+   - The user can always pick "Other" to suggest a different angle
 6. **Capture the outcome** — once the user picks a direction, write a lightweight brainstorm note to `docs/dw/<YYYY-MM-DD>-<topic-slug>-brainstorm.md`
 
 ## Brainstorm Note Format
