@@ -23,6 +23,7 @@ Then in Claude Code, add the plugin path to your settings.
 ║   Pre-Engineering    ║            Engineering                 ║     Post     ║
 ╠══════════════════════╬════════════════════════════════════════╬══════════════╣
 ║  brainstorm  specify ║  plan  →  implement  →  qa  →  review  ║  compound    ║
+║                      ║    ↑_______↓                           ║              ║
 ╚══════════════════════╩════════════════════════════════════════╩══════════════╝
          ↓                              ↓                              ↓
    What to build               How to build it               What was built
