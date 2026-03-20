@@ -1,0 +1,14 @@
+{
+  "name": "dont-workflow",
+  "description": "Lightweight engineering workflow plugin for Claude Code — brainstorm, specify, plan, implement, qa, review, and more.",
+  "plugins": [
+    {
+      "name": "dw",
+      "description": "Lightweight AI engineering workflow — brainstorm, specify, plan, implement, review, investigate, fix, and compound.",
+      "source": {
+        "source": "path",
+        "path": "."
+      }
+    }
+  ]
+}

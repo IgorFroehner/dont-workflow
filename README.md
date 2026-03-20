@@ -6,13 +6,23 @@ A Claude Code plugin that gives you a structured engineering workflow — from f
 
 ## Install
 
-Clone the repo and add it as a Claude Code plugin:
+Inside Claude Code, run:
+
+```shell
+/plugin marketplace add igorfroehner/dont-workflow
+/plugin install dw@igorfroehner-dont-workflow
+```
+
+All `/dw:*` skills are now available. Run `/reload-plugins` if you're in an active session.
+
+### Alternative: local clone
+
+If you prefer to pin a version or hack on the plugin:
 
 ```bash
 git clone https://github.com/igorfroehner/dont-workflow.git
+claude --plugin-dir ./dont-workflow
 ```
-
-Then in Claude Code, add the plugin path to your settings.
 
 ## Workflows
 
@@ -52,9 +62,19 @@ Start broad, get specific, then execute. Each step produces a document that feed
 | **investigate** | Form hypotheses, gather evidence, find root causes. Asks for logs/context before concluding. |
 | **fix** | Apply targeted fixes from the investigation. Only touches what you ask it to. |
 
-## Why This Exists
+## Why I Built This
 
-Claude Code is powerful, but without structure it tends to guess, over-scope, and lose context. This plugin adds guardrails:
+There are other workflow plugins for Claude Code — Compound Engineering, Superpowers, Get Shit Done, and others. They all try to add structure, and that's a good instinct. But after using them, I kept running into the same problem: they're built around heavyweight concepts like "phases", "sprints", and "cycles" that feel borrowed from project management, not from how engineers actually work day-to-day. When you just need to spec out a feature, implement it, and ship it, that overhead gets in the way fast.
+
+Those plugins also tend to spawn fleets of sub-agents and trigger chains of other skills automatically. Sometimes that's useful, but most of the time it just blows through your context window and burns tokens for no real reason — you end up paying for work you didn't ask for and didn't need.
+
+On top of that, they skip steps that matter. None of them have a proper specification step — the part where you nail down *what* you're building before you start writing code. They don't have a QA feedback loop either, so when something looks wrong after implementation, you're back to ad-hoc prompting. And there's no way to loop back from implementation to the plan when you discover something unexpected. dont-workflow fills those gaps: brainstorm → specify → plan → implement → qa, with a loop back from implement to plan when reality doesn't match the blueprint.
+
+The philosophy here is lightweight and focused. Each skill does exactly one thing — `/dw:plan` plans, `/dw:implement` implements, `/dw:fix` fixes — and nothing else. Skills don't bleed into each other, they don't spawn sub-agents, and they don't guess when context is missing. They ask. The working artifacts are plain markdown files, there are zero dependencies, and the whole thing is just prompt files that Claude Code loads directly.
+
+If you're a product manager sketching out what to build, or an engineer shipping features, this is meant to match the way you actually work: figure out the problem, decide what to build, plan how to build it, build it, check it, ship it. No ceremony beyond what's useful.
+
+## Design Principles
 
 - **Skills don't bleed into each other.** `/fix` only fixes. `/implement` follows the plan. Each skill stays in its lane.
 - **Ask before assuming.** Skills pause and ask rather than filling gaps with guesses.
