@@ -7,7 +7,7 @@
     {
       "name": "dw",
       "description": "Lightweight AI engineering workflow — brainstorm, specify, plan, implement, review, investigate, fix, and compound.",
-      "source": "."
+      "source": "./"
     }
   ]
 }
