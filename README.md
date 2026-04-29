@@ -2,9 +2,11 @@
 
 Stop guessing. Start shipping.
 
-A Claude Code plugin that gives you a structured engineering workflow — from fuzzy idea to production code — without spawning a fleet of sub-agents. Pure markdown, zero dependencies.
+A Markdown-only workflow plugin for agentic coding tools. It gives you a structured engineering workflow — from fuzzy idea to production code — without spawning a fleet of sub-agents. Pure markdown, zero dependencies.
 
 ## Install
+
+### Claude Code
 
 Inside Claude Code, run:
 
@@ -23,6 +25,22 @@ If you prefer to pin a version or hack on the plugin:
 git clone https://github.com/igorfroehner/dont-workflow.git
 claude --plugin-dir ./dont-workflow
 ```
+
+### Codex
+
+Codex can read the same `skills/` directory through the included `.codex-plugin/plugin.json`.
+
+For local use, install or link this repository as a Codex plugin, then invoke the workflow in plain language, for example:
+
+```text
+Use dont-workflow to brainstorm this idea: ...
+Use dont-workflow to specify the feature in docs/dw/...
+Use dont-workflow to plan this spec file: docs/dw/...
+Use dont-workflow to implement this plan: docs/dw/...
+Use dont-workflow to review staged changes.
+```
+
+Codex does not use Claude-style `/dw:*` slash commands. The skill names and descriptions are loaded as Codex skills, and Codex chooses them from your request.
 
 ## Workflows
 
@@ -70,7 +88,7 @@ Those plugins also tend to spawn fleets of sub-agents and trigger chains of othe
 
 On top of that, they skip steps that matter. None of them have a proper specification step — the part where you nail down *what* you're building before you start writing code. They don't have a QA feedback loop either, so when something looks wrong after implementation, you're back to ad-hoc prompting. And there's no way to loop back from implementation to the plan when you discover something unexpected. dont-workflow fills those gaps: brainstorm → specify → plan → implement → qa, with a loop back from implement to plan when reality doesn't match the blueprint.
 
-The philosophy here is lightweight and focused. Each skill does exactly one thing — `/dw:plan` plans, `/dw:implement` implements, `/dw:fix` fixes — and nothing else. Skills don't bleed into each other, they don't spawn sub-agents, and they don't guess when context is missing. They ask. The working artifacts are plain markdown files, there are zero dependencies, and the whole thing is just prompt files that Claude Code loads directly.
+The philosophy here is lightweight and focused. Each skill does exactly one thing — plan plans, implement implements, fix fixes — and nothing else. Skills don't bleed into each other, they don't spawn sub-agents, and they don't guess when context is missing. They ask. The working artifacts are plain markdown files, there are zero dependencies, and the whole thing is just prompt files that the host agent loads directly.
 
 If you're a product manager sketching out what to build, or an engineer shipping features, this is meant to match the way you actually work: figure out the problem, decide what to build, plan how to build it, build it, check it, ship it. No ceremony beyond what's useful.
 

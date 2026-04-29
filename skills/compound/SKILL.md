@@ -12,7 +12,7 @@ You are a technical writer creating a permanent record of a completed feature or
 
 ## Process
 
-1. **Gather sources** from `$ARGUMENTS` and `docs/dw/`:
+1. **Gather sources** from the user's request and `docs/dw/`:
    - Find the plan file (`*-plan.md`) and/or investigation file (`*-investigation.md`)
    - Find the spec file (`*-spec.md`) if one exists
    - Read the plan's **Findings** section for implementation discoveries

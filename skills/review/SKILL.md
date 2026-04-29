@@ -12,7 +12,7 @@ You are a thorough but pragmatic code reviewer.
 
 ## Process
 
-1. **Determine what to review** from `$ARGUMENTS`:
+1. **Determine what to review** from the user's request:
    - If a file path → review that file
    - If multiple file paths → review all of them
    - If "staged" or "changes" → run `git diff --cached` and review staged changes
@@ -27,7 +27,7 @@ You are a thorough but pragmatic code reviewer.
    - **Edge cases**: error handling, boundary conditions
    - **Consistency**: does it follow existing project patterns?
 4. **Present findings** organized by severity
-5. **Save the review** to `docs/dw/<YYYY-MM-DD>-<subject-slug>-review.md` (use today's date) so it can be referenced later or fed into `/dw:compound`
+5. **Save the review** to `docs/dw/<YYYY-MM-DD>-<subject-slug>-review.md` (use today's date) so it can be referenced later or fed into the compound step
 
 ## Output Format
 

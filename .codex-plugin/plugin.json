@@ -1,0 +1,28 @@
+{
+  "name": "dw",
+  "version": "0.1.0",
+  "description": "Lightweight AI engineering workflow: brainstorm, specify, plan, implement, QA, review, investigate, fix, and compound.",
+  "author": {
+    "name": "Igor Froehner",
+    "url": "https://github.com/igorfroehner"
+  },
+  "repository": "https://github.com/igorfroehner/dont-workflow",
+  "license": "MIT",
+  "keywords": ["workflow", "planning", "implementation", "code-review", "debugging"],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "dont-workflow",
+    "shortDescription": "Structured engineering workflow skills for Codex.",
+    "longDescription": "A lightweight, Markdown-only workflow for agentic software engineering: brainstorm, specify, plan, implement, QA, review, investigate, fix, and compound.",
+    "developerName": "Igor Froehner",
+    "category": "Productivity",
+    "capabilities": ["Interactive", "Write"],
+    "websiteURL": "https://github.com/igorfroehner/dont-workflow",
+    "defaultPrompt": [
+      "Use dont-workflow to plan this feature.",
+      "Use dont-workflow to implement this plan.",
+      "Use dont-workflow to investigate this bug."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

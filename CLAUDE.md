@@ -1,16 +1,17 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository. Codex-specific guidance lives in `AGENTS.md`.
 
 ## What This Repo Is
 
-A Claude Code plugin (`dw`) providing lightweight engineering workflow skills. It is a pure-markdown plugin — no build step, no dependencies, no runtime. All skills are prompt files loaded by Claude Code.
+A Claude Code and Codex plugin (`dw`) providing lightweight engineering workflow skills. It is a pure-markdown plugin — no build step, no dependencies, no runtime. All skills are prompt files loaded by the host agent.
 
 ## Structure
 
 ```
-.claude-plugin/plugin.json   # Plugin manifest (name: "dw", version)
-skills/<name>/SKILL.md       # One directory per skill, one prompt file inside
+.claude-plugin/plugin.json   # Claude Code plugin manifest
+.codex-plugin/plugin.json    # Codex plugin manifest
+skills/<name>/SKILL.md       # Shared skill prompt files
 ```
 
 Each `SKILL.md` has a YAML frontmatter block followed by the skill prompt:
