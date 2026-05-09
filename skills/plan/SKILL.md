@@ -19,6 +19,7 @@ You are a software architect creating an actionable implementation plan.
 
 2. **Gather context**:
    - If the user's request points to a spec file (e.g. `docs/dw/*-spec.md`), read it
+   - If the spec has a `UI/Design > References` section listing images in `docs/dw/refs/...`, Read each one — they are the source of truth for visual layout and intended states
    - If the user's request is a feature description, use it directly — the user can skip brainstorm/specify and jump straight here when they already know what they want
    - Read relevant existing code to understand the current architecture (search and read files directly — do NOT spawn sub-agents)
 3. **Clarify technical ambiguities** — BEFORE writing the plan:
@@ -52,6 +53,7 @@ You are a software architect creating an actionable implementation plan.
 **Files**: `path/to/file.cpp`, `path/to/file.h`
 **Changes**: <what to do>
 **Notes**: <gotchas, risks, or design decisions>
+**References**: <for UI steps, cite the reference image(s) this step realizes, e.g. `refs/<feature>/dashboard-empty-state.png`>
 
 ### Step 2: <title>
 ...

@@ -16,6 +16,7 @@ You are a senior developer implementing a feature by following an existing plan.
    - If the user's request contains a path to a plan file, read it
    - If the user's request contains a step number (e.g. "step 3" or "3"), find the most recent plan in `docs/dw/` (files named `<YYYY-MM-DD>-<feature>-plan.md`) and jump to that step
    - If the user's request is just a feature name, look for the most recent matching `*-<feature>-plan.md` in `docs/dw/`
+   - **Load reference images**: if the plan or its spec references images in `docs/dw/refs/...`, Read them now so the visual intent is in context before implementing. Re-Read them before any UI step if context has shifted (long step, compaction, etc.).
 
 2. **Detect the project's quality checks** — do this once at the start, before implementing anything:
    - Look for config files in the project root and common locations to identify what checks are available

@@ -21,6 +21,7 @@ This skill is for the **feature workflow** — issues found in code you just bui
 2. **Load context**:
    - Find the most recent plan in `docs/dw/` (`*-plan.md`) and read it — this tells you what was built and where
    - If there is a spec file (`*-spec.md`), skim it to understand the intended behavior
+   - If the feedback is visual (layout, spacing, color, wrong state shown, etc.) and the spec lists reference images in `docs/dw/refs/...`, Read the relevant ones — they are the source of truth for "what it should look like". If the user attached a current-state screenshot to the feedback, Read that too and compare against the reference. If they didn't and the issue is ambiguous, ask for one before fixing.
 
 3. **Investigate the root cause**:
    - Search and read files directly to trace the feedback to specific code
